@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excellence in R&D</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        p,
+        span {
+            font-family: 'Roboto Serif', serif;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #B04B34;
+            color: white;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 10px 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .logo img {
+    height: 70px;  /* Set the height of the logo */
+    width: auto;    /* Maintain aspect ratio */
+}
+
+
+        .header .nav {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .header .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .header .nav a:hover {
+            color: #d9d9d9;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header .nav {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+                margin-left: auto;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+            .mobile-nav {
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: #B04B34;
+                width: 100%;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }
+
+            .mobile-nav a {
+                display: block;
+                padding: 10px;
+                color: white;
+                text-decoration: none;
+                font-size: 1rem;
+            }
+
+            .mobile-nav a:hover {
+                background-color: #8d3c2a;
+            }
+        }
+
+        .banner {
+            position: relative;
+            overflow: hidden;
+            height: 70vh;
+            background-image: url('images/banner.jpeg');
+            /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .banner h1 {
+            z-index: 2;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        @keyframes zoom {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .banner {
+            animation: zoom 10s infinite;
+        }
+
+
+        .points-section {
+            padding: 50px 20px;
+        }
+
+        .icon-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .icon-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-card i {
+            font-size: 2rem;
+            color: #B04B34;
+            margin-right: 15px;
+        }
+
+        .researchimg {
+            max-width: 100%;
+            height: auto;
+            width: 450px;
+            /* Adjust the width as needed */
+            display: block;
+            margin: 0 auto;
+        }
+
+        .sec2 {
+            font-size: 1.2rem;
+            text-align: center;
+            color: #282525;
+        }
+
+        .section-title {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #B04B34;
+        }
+
+        .targets-section {
+            background: #f8f9fa;
+            padding: 50px 20px;
+        }
+
+        .target-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #333;
+            position: relative;
+        }
+
+        .target-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border-radius: 50%;
+        }
+
+        .target-card h5 {
+            color: #B04B34;
+            margin-top: 10px;
+        }
+
+        .target-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        .targets-section .row {
+    justify-content: center; /* Centers all the columns */
+}
+
+
+.targets-section .col-md-4:nth-last-child(-n+2) {
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+        .download-links {
+            padding: 50px 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .download-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .download-item h5 {
+            margin: 0;
+            color: #333;
+        }
+
+        .download-item span {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .btn-download {
+            background: #B04B34;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .btn-download:hover {
+            background: #8d3c2a;
+        }
+
+        .fluid-bg {
+            background: #B04B34;
+            padding: 100px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        [data-aos] {
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+            transform: none;
+        }
+
+        [data-aos="fade-up"] {
+            transform: translateY(20px);
+        }
+
+        [data-aos="fade-down"] {
+            transform: translateY(-20px);
+        }
+
+        [data-aos="fade-left"] {
+            transform: translateX(20px);
+        }
+
+        [data-aos="fade-right"] {
+            transform: translateX(-20px);
+        }
+
+        @media (max-width: 1024px) {
+            .banner {
+                height: 100vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 1.8rem;
+            }
+
+            .banner {
+                height: 50vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner h1 {
+                font-size: 1.5rem;
+            }
+
+            .banner {
+                height: 40vh;
+            }
+        }
+        .footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 80px;
+    background-color: #1f2021;
+    border-top: 1px solid #ddd;
+}
+
+.footer > div {
+    flex: 1 1 200px;  /* Flexbox property to ensure responsive layout */
+    margin: 10px;
+}
+
+.footer h3 {
+    color: #B04B34;
+}
+
+.footer p {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.footer a {
+    color: #efefef;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer > div {
+        flex: 1 1 100%;  /* Allow each section to take full width */
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer p, .footer a {
+        font-size: 16px;  /* Reduce font size on very small screens */
+    }
+}
+
+.copyright {
+    text-align: center;
+    background-color:  #B04B34;
+    padding: 10px;
+    font-size: 14px;
+    color: #fefefe;
+}
+
+.copyright p {
+    margin: 0;
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Fixed Header -->
+    <div class="header">
+        <div class="logo"><img src="images/IITK_logo.png"></div>
+        <div class="nav">
+            <a href="#">Home</a>
+            <a href="#research">Research</a>
+            <a href="#objective">Objective</a>
+            <a href="#proposal">Proposal</a>
+        </div>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+    <div class="mobile-nav">
+        <a href="#">Home</a>
+        <a href="#research">Research</a>
+        <a href="#objective">Objective</a>
+        <a href="#proposal">Proposal</a>
+    </div>
+    <!-- Banner Section -->
+    <div class="banner">
+    </div>
+
+    <!-- Paragraph Section -->
+    <div class="sec2 container my-5">
+        <p>Welcome to IIT Kanpur's Research Portal. It provides a window into our extensive research ecosystem,
+            featuring impactful projects and actionable proposals across diverse disciplines. From sustainable
+            technologies and healthcare solutions to artificial intelligence and quantum advancements, our initiatives
+            aim to create a meaningful difference in the world.<br />
+            <br />
+            We invite researchers, industry leaders, and visionaries to explore these opportunities, connect with our
+            experts, and collaborate in translating ideas into impactful solutions. With the world at a pivotal moment
+            of change, there has never been a better time to join hands and co-create a brighter, more sustainable
+            future.
+        </p>
+    </div>
+
+
+
+
+
+    <div id="research" class="container points-section">
+        <h2 class="section-title">Why work with us now?</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <img class="researchimg" src="images/teaching-&-research.jpg" alt="State of UP"
+                    class="img-fluid rounded shadow">
+            </div>
+            <div class="col-md-6 mt-2">
+                <div class="icon-card">
+                    <i class="fas fa-chart-line"></i>
+                    <span>State of UP is poised for rapid growth</span>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-gavel"></i>
+                    <span>Public infrastructure, Law and order issues are well settled</span>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>The growth can be driven by technology</span>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-university"></i>
+                    <span>IITK can play a pivotal role</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----Target section2------------->
+
+    <div id="objective" class="targets-section">
+        <div class="container">
+            <h1 class="section-title">R&D Objectives</h1>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="target-card"
+                        style="background: linear-gradient(124deg, #AA552A 45%, #DC5D4F 100%); color: white;">
+                        <div class="icon" style="font-size: 3rem; margin-bottom: 15px;">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h5 style="color: white"></h5>
+                        <p>Recruitment & Retention of Top-quality Faculty</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-down">
+                    <div class="target-card"
+                        style="background: linear-gradient(124deg, #AA552A 45%, #DC5D4F 100%); color: white;">
+                        <div class="icon" style="font-size: 3rem; margin-bottom: 15px;">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h5 style="color: white"></h5>
+                        <p>State-of-the-Art Lab Facilities Creation</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="target-card"
+                        style="background: linear-gradient(124deg, #AA552A 45%, #DC5D4F 100%); color: white;">
+                        <div class="icon" style="font-size: 3rem; margin-bottom: 15px;">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h5 style="color: white"></h5>
+                        <p>Bringing Large R&D Grants</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-down">
+                    <div class="target-card"
+                        style="background: linear-gradient(124deg, #AA552A 45%, #DC5D4F 100%); color: white;">
+                        <div class="icon" style="font-size: 3rem; margin-bottom: 15px;">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h5 style="color: white"></h5>
+                        <p>Engaging Top-quality Research Students</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-down">
+                    <div class="target-card"
+                        style="background: linear-gradient(124deg, #AA552A 45%, #DC5D4F 100%); color: white;">
+                        <div class="icon" style="font-size: 3rem; margin-bottom: 15px;">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h5 style="color: white"></h5>
+                        <p>Maintaining Research Quality-Quantity Balance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Proposal Download Section -->
+    <!-- <div class="download-links mt-4">
+    <div class="container">
+    <h2 class="section-title">Research Proposals</h2>
+    <div class="download-item">
+        <div>
+            <h5>Prof. Sachhida Nand Tripathi</h5>
+            <span>Department: Aerospace Engineering</span>
+        </div>
+        <a href="Encouraging Innovation and Experimentation with AI.pdf" download class="btn btn-download">Download Proposal</a>
+    </div>
+    <div class="download-item">
+        <div>
+            <h5>Prof. Nishant N. Nair</h5>
+            <span>Department: Computer Science</span>
+        </div>
+        <a href="Encouraging Innovation and Experimentation with AI.pdf" download class="btn btn-download">Download Proposal</a>
+    </div>
+    <div class="download-item">
+        <div>
+            <h5>Prof. Harshawardhan Wanare</h5>
+            <span>Department: Artificial Intelligence</span>
+        </div>
+        <a href="Encouraging Innovation and Experimentation with AI.pdf" download class="btn btn-download">Download Proposal</a>
+    </div>
+</div>
+</div> -->
+    <!----------Proposal Download ---------->
+
+
+    <div id="proposal"class="proposals-section mt-4">
+        <div class="container">
+            <h1 class="section-title">Research Proposals</h1>
+            <div class="row">
+                <!-- Card 1 -->
+                <div class="col-md-4">
+                    <div class="proposal-card">
+                        <h4>Net Zero IIT Kanpur: Creating Pathway for Net Zero India</h4>
+                        <p><strong>Budget:</strong> 250 Cr</p>
+                        <a href="images/Net-Zero IIT Kanpur_ Creating pathway for Net-Zero India.docx" download
+                            class="btn btn-download">Download Proposal</a>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-md-4">
+                    <div class="proposal-card">
+                        <h4>Center for Advance Computing <br />and AI</h4>
+                        <p><strong>Budget:</strong> 280 Cr</p>
+                        <a href="images/Proposal_CACAI_v1.docx" download class="btn btn-download">Download Proposal</a>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-md-4">
+                    <div class="proposal-card">
+                        <h4>Quantum Technology<br /> Center</h4>
+                        <p><strong>Budget:</strong> 172 Cr</p>
+                        <a href="images/Quantum Technology Center.docx" download class="btn btn-download">Download Proposal</a>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="col-md-4">
+                    <div class="proposal-card">
+                        <h4>Building and Innovating Drug Discovery Ecosystem at IIT Kanpur</h4>
+                        <p><strong>Budget:</strong> 136.70 Cr</p>
+                        <a href="images/Final Proposal_Therapeutics.docx" download class="btn btn-download">Download Proposal</a>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="col-md-4">
+                    <div class="proposal-card">
+                        <h4>Medical Devices and Diagnostics Prototyping and Testing Facility</h4>
+                        <p><strong>Budget:</strong> 42 Cr</p>
+                        <a href="images/Medical Devices and Diagnostics Prototyping And Testing Facility.docx" download class="btn btn-download">Download Proposal</a>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <!-- <div class="col-md-4">
+                    <div class="proposal-card">
+                        <h4>Net Zero IIT Kanpur: Creating Pathway for Net Zero India</h4>
+                        <p><strong>Budget:</strong> 250 Cr</p>
+                        <a href="NetZeroIITKanpur.pdf" download class="btn btn-download">Download Proposal</a>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .proposals-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        .proposal-card {
+            background: linear-gradient(124deg, #ffffff 45%, #ffffff 100%);
+            border: 2px solid #B04B34;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .proposal-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .proposal-card p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #282525;
+        }
+
+        .btn-download {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background: #AA552A;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-download:hover {
+            background-color: #d96542;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Card hover effect */
+        .proposal-card:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+<footer class="footer">
+    <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>Dean of Resources and Alumni Office</p>
+        <p>Room no. 269, Faculty Building</p>
+        <p>IIT Kanpur- 208016</p>
+        <p>For any queries please contact us at <a href="mailto:alumni@iitk.ac.in">alumni@iitk.ac.in</a></p>
+        <p>Phone No. +91-512-259-7289</p>
+    </div>
+    <div class="others">
+        <h3>Others</h3>
+        <p><a href="https://www.iitk.ac.in/dora/office-order">Office Orders</a></p>
+        <p><a href="https://almaworld.iitk.ac.in/">Almaworld</a></p>
+    </div>
+    <div class="social-media">
+        <h3>Social Media Links</h3>
+        <p><a href="https://www.youtube.com/channel/UCVAeCAtvJbYXM0lW0EiDf9A">you tube</a></p>
+        <p><a href="https://www.linkedin.com/in/dean-of-resources-and-alumni-iit-kanpur-32a377198/">LinkedIn</a></p>
+    </div>
+</footer>
+
+<section class="copyright">
+    <p>Copyright © All Rights Reserved.</p>
+</section>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Toggle mobile navigation menu
+        document.querySelector('.mobile-menu').addEventListener('click', function () {
+            const mobileNav = document.querySelector('.mobile-nav');
+            if (mobileNav.style.display === 'block') {
+                mobileNav.style.display = 'none';
+            } else {
+                mobileNav.style.display = 'block';
+            }
+        });
+
+    </script>
+</body>
+
+</html>
